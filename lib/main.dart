@@ -37,8 +37,6 @@ class MyHomePage extends StatelessWidget {
               child: Text('CHART!'),
             ),
           ),
-          NewTransaction(),
-          TransanctionList(),
         ],
       ),
     );
