@@ -13,8 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
-            .copyWith(secondary: Colors.amber),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.purple,
+          errorColor: Colors.red,
+        ).copyWith(secondary: Colors.amber),
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
               titleLarge: TextStyle(
@@ -99,6 +101,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _deleteTransaction(String id) {
+    setState(
+      () {
+        _userTransanction.removeWhere((tx) => tx.id == id);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransactions),
-            TransanctionList(_userTransanction),
+            TransanctionList(_userTransanction, _deleteTransaction),
           ],
         ),
       ),
