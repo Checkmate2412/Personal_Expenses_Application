@@ -7,11 +7,11 @@ class TransanctionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function deleteTx;
 
-  TransanctionList(this.transactions, this.deleteTx);
+  const TransanctionList(this.transactions, this.deleteTx, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 500,
       child: transactions.isEmpty
           ? Column(
@@ -20,10 +20,10 @@ class TransanctionList extends StatelessWidget {
                   'No Transactions added yet!',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                   height: 200,
                   child: Image.asset(
                     'assets/images/waiting.png',
@@ -36,7 +36,7 @@ class TransanctionList extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 return Card(
                   elevation: 5,
-                  margin: EdgeInsets.symmetric(
+                  margin: const EdgeInsets.symmetric(
                     vertical: 8,
                     horizontal: 5,
                   ),
@@ -61,7 +61,7 @@ class TransanctionList extends StatelessWidget {
                           .format(transactions[index].date as DateTime),
                     ),
                     trailing: IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: const Icon(Icons.delete),
                       color: Theme.of(context).colorScheme.error,
                       onPressed: () => deleteTx(transactions[index].id),
                     ),
